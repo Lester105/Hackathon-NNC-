@@ -88,15 +88,58 @@
       <input type="text" placeholder="Middle Name" name="data[Middle_Name]" id="Middle_Name" required>
 
       <label for="Age"><b>Age (Format: 10)</b></label>
-      <input type="text" placeholder="Age" name="data[Age]" id="Age" required>
+      <input type="number" placeholder="Age" name="data[Age]" id="Age" required>
 
-      <label for="Sex"><b>Sex (Format: Male or Female)</b></label>
-      <input type="text" placeholder="Sex" name="data[Sex]" id="Sex" required>
+    <label for="Default">*Sex (Male or Female)</label>
+      <select name="data[Sex]" id="lang">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+<br>
 
       <br>
       <label for="Birthdate">Date of Birth</label>
       <input type="date" id="Birthdate" name="data[Birthdate]" value="Birthdate">
       <br>
+
+<br>
+<br>
+<br>
+
+      <h1>Address</h1>
+      <p>Please Indicate the Address</p>
+
+      <hr>
+
+      <label for="Brgy"><b>Barangay (Format: Barangay 15 - Ilawod East) </b></label>
+      <input type="text" placeholder="Barangay" name="data[Barangay]" id="Barangay" required>
+
+      <label for="Municipality"><b>Municipality (Format: Legazpi City)</b></label>
+      <input type="text" placeholder="Municipality" name="data[Municipality]" id="Municipality" required>
+
+      <label for="Province"><b>Province (Format: Albay)</b></label>
+      <input type="text" placeholder="Province" name="data[Province]" id="Province" required>
+
+            <label for="lang">Region (Format: Region V):  </label>
+      <select name="data[Region]" id="lang">
+        <option value="Region I ">Region I Ilocos Region</option>
+        <option value="Region II">Region II Cagayan Valley</option>
+        <option value="Region III">Region III Central Luzon</option>
+        <option value="Region IV A">Region IV A  CALABARZON</option>
+        <option value="MIMAROPA">MIMAROPA Region</option>
+        <option value="Region V">Region V Bicol Region</option>
+        <option value="Region VI">Region VI Western Visayas</option>
+        <option value="Region VII">Region VII Central Visayas</option>
+        <option value="egion VIII">Region VIII Eastern Visayas</option>
+        <option value="Region IX">Region IX  Zamboanga Peninsula</option>
+        <option value="Region X">Region X Northern Mindanao</option>
+        <option value="Region XI">Region XI Davao Region</option>
+        <option value="Region XII">Region XII SOCCSKSARGEN</option>
+        <option value="Region XIII">Region XIII Caraga</option>
+        <option value="NCR">NCR National Capital Region</option>
+        <option value="CAR">CAR Cordillera Administrative Region</option>
+        <option value="BARMM">BARMM Bangsamoro Autonomous Region in Muslim Mindanao</option>
+      </select>
 
       <!-- Start of Timestamp -->
       <input type="hidden" id="timestamp" name="data[Timestamp]" value="dateOfUser">
@@ -123,16 +166,22 @@
         window.onload = generateUID()
         var idOfUser = generateUID();
 
-        document.getElementById("userid").value = idOfUser;  
+        document.getElementById("userid").value = idOfUser;
+
+        localStorage.setItem('id', idOfUser)
+        console.log(idOfUser)
+        // ok nakakasave na ng 8-char ID to google sheets here
       </script>
+        
       <!-- End of ID -->
 
       <hr>
-      <button type="submit" class="registerbtn">Next Form (Address)</button>
+      <button type="submit" class="registerbtn">Next Form (Patient Sa)</button>
     </form>
 
     <script>
 
+      var form = document.getElementById('sheetdb-form');
       form.addEventListener("submit", e => {
         e.preventDefault();
         fetch(form.action, {

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Address</title>
+    <title>Patient Assessment</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,31 +61,55 @@
 
     <div class="container">
 
-      <h1>Address</h1>
-      <p>Please Indicate the Address</p>
+      <h1>Patient Status</h1>
+      <p>Please Indicate the Patient Status</p>
 
       <hr>
-    <form action = "https://sheetdb.io/api/v1/9fkndcsb0to1w" method="post" id="sheetdb-form"> 
+    <form action = "https://sheetdb.io/api/v1/ry7uhp7nl8rbe?sheet=sheet2" method="post" id="sheetdb-form">
 
-      <label for="Brgy"><b>Barangay (Format: Barangay 15 - Ilawod East) </b></label>
-      <input type="text" placeholder="Barangay" name="data[Barangay]" id="Barangay" required>
+      <label for="Weight"><b>Weight (in Kilograms|Format: 29) </b></label>
+      <input type="number" placeholder="Weight" name="data[Weight]" id="Weight" required>
 
-      <label for="Municipality"><b>Municipality (Format: Legazpi City)</b></label>
-      <input type="text" placeholder="Municipality" name="data[Municipality]" id="Municipality" required>
+      <label for="Length_Height"><b>Length_Height (In centimeter|Format: 96)</b></label>
+      <input type="number" placeholder="Length_Height" name="data[Length_Height]" id="Length_Height" required>
 
-      <label for="Province"><b>Province (Format: Albay)</b></label>
-      <input type="text" placeholder="Province" name="data[Province]" id="Province" required>
-
-      <label for="Region"><b>Region (Format: V)</b></label>
-      <input type="text" placeholder="Region" name="data[Region]" id="Region" required>
-
+      <label for="MUAC"><b>MUAC (Middle Upper Arm Circumfernce | In centimeter| format: 13)</b></label>
+      <input type="number" placeholder="MUAC" name="data[MUAC]" id="MUAC" required>
       <hr>
 
-        <button type="submit" class="registerbtn">Next Form (Address)</button>
+    <label for="Default">Did the patient status and details got a follow-up previously?</label>
+    <br>
+      <select name="data[default]" id="lang">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+<br>
+<br>
+<br>
+
+      <label for="dead">Did the patient deceased?</label>
+      <br>
+      <select name="data[dead]" id="lang">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+<br>
+<br>
+
+      <button type="submit" class="registerbtn">Submit to Database</button>
+
+    <input type="hidden" id="userid" name="data[ID]">
+
     </form>
 
     <script>
       
+        let id =localStorage.getItem('id');
+        console.log(id);
+
+        document.getElementById("userid").value = id;
+        
         var form = document.getElementById('sheetdb-form');
         form.addEventListener("submit", e => {
           e.preventDefault();
@@ -96,13 +120,13 @@
               response => response.json()
           ).then((html) => {
             // you can put any JS code here
-            window.open('Registration3.html', '_self');
+            window.open('index.html', '_self');
+
 
           });
         });
 
     </script>
-
     </div>
 
   </body>
