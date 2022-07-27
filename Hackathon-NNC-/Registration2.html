@@ -32,8 +32,9 @@
         <div class="header">
             <div class="menu-bar">
             <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#"><img src="images/nncLogo.png" width= 225px height= 100px class="img-fluid"></a>
-            <a class="navbar-brand" href="#"><img src="images/Branding.png" width= 75px height= 100px class="rounded float-left"></a>
+            <a class="navbar-brand" href="#"><img src="images/nncLogo.png" width= 100px height= 75px class="img-fluid"></a>
+            <a class="navbar-brand" href="#"><img src="images/Branding.png" width= 75px height= 100px class="img-fluid"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -65,7 +66,7 @@
       <p>Please Indicate the Patient Status</p>
 
       <hr>
-    <form action = "https://sheetdb.io/api/v1/ry7uhp7nl8rbe?sheet=sheet2" method="post" id="sheetdb-form">
+    <form action = "https://sheetdb.io/api/v1/ry7uhp7nl8rbe?sheet=Health_Record" method="post" id="sheetdb-form">
 
       <label for="Weight"><b>Weight (in Kilograms|Format: 29) </b></label>
       <input type="number" placeholder="Weight" name="data[Weight]" id="Weight" required>
@@ -99,8 +100,16 @@
 
       <button type="submit" class="registerbtn">Submit to Database</button>
 
-    <input type="hidden" id="userid" name="data[ID]">
+    <!-- Start of Timestamp -->
+      <input type="hidden" id="timestamp" name="data[Timestamp]" value="dateOfUser">
+      <script type="text/javascript">
+        var date = new Date();
+        var dateOfUser = date.toISOString();
+        document.getElementById("timestamp").value = dateOfUser;
+      </script>
+      <!-- End of Timestamp -->
 
+    <input type="hidden" id="userid" name="data[ID]">
     </form>
 
     <script>
