@@ -1,3 +1,4 @@
+# Z-score
 def zscore(length, weight, age):
     """
     Calculates the z-score of a child given their length/height, weight, and if they are over 2 years old or not.
@@ -29,7 +30,8 @@ def zscore(length, weight, age):
         try:
             L_val = df0_2.loc[df0_2['Length'] == length, 'L'].iloc[0]
         except IndexError:
-            print("Please check whether the child is younger or equal to 24 months old in the form.")
+            print(
+                "Please check whether the child is younger or equal to 24 months old in the form.")
         M_val = df0_2.loc[df0_2['Length'] == length, 'M'].iloc[0]
         S_val = df0_2.loc[df0_2['Length'] == length, 'S'].iloc[0]
     else:
@@ -44,3 +46,28 @@ def zscore(length, weight, age):
     # Calculate z_score
     Z_score = ((float(weight)/M_val)**L_val - 1) / (L_val * S_val)
     return Z_score
+
+# Acute Malnutrition Classifier
+
+
+def am_classify(zscore, muac, edema):
+    """
+    Classifies the child's z-score, MUAC, and presence of edema into a status.
+    """
+    if edema != True:
+        if float(muac) >= 115:
+            if float(muac) >= 125:
+                status = "NORMAL"
+            elif zscore >= -3:
+                if zscore < -2:
+                    status = "MODERATE Acute Malnutrition"
+                else:
+                    status = "NORMAL"
+            else:
+                status = "MODERATE Acute Malnutrition"
+        else:
+            status = "SEVERE Acute Malnutrition"
+    else:
+        status = "SEVERE Acute Malnutrition"
+
+    return status

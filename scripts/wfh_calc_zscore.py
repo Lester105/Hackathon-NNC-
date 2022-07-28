@@ -11,6 +11,9 @@ length = 78.9  # height/length in cm
 weight = 8.5  # weight in kg
 age = 2
 muac = 110  # MUAC in mm
+edema = True
 
 zscore = -3.1
 #zscore = calc.zscore(length, weight, age)
+
+status = calc.am_classify(zscore, muac, edema)
